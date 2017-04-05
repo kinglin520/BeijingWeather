@@ -11,10 +11,19 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        config {
+            keyAlias 'lifeweather'
+            keyPassword 'wenlin'
+            storeFile file('D:/studiodemo/BeijingWeather/lifeweather.jks')
+            storePassword 'wenlin'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
     productFlavors {
@@ -52,6 +61,5 @@ dependencies {
     compile 'org.greenrobot:greendao:3.2.0'
     compile 'com.afollestad.material-dialogs:core:0.9.3.0'
     compile 'com.afollestad.material-dialogs:commons:0.9.3.0'
-
     compile 'com.github.chrisbanes:PhotoView:1.2.6'
 }
