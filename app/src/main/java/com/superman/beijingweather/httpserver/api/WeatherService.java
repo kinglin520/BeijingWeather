@@ -1,6 +1,7 @@
 package com.superman.beijingweather.httpserver.api;
 
 import com.superman.beijingweather.httpserver.BaseWeatherResponse;
+import com.superman.beijingweather.model.weather.County;
 import com.superman.beijingweather.model.weather.Weather;
 
 import java.util.List;
@@ -19,4 +20,8 @@ public interface WeatherService {
     Observable<BaseWeatherResponse<List<Weather>>> getWeatherInfo(@Query("cityid") String page , @Query("key") String key);
     @GET("http://guolin.tech/api/bing_pic?")
     Observable<String> getBingPic();
+    @GET("http://guolin.tech/api/china/1/1")
+    Observable<List<County>> getBeijingCities();
+    @GET("http://guolin.tech/api/china/1/2")
+    Observable<List<County>> getShanghaiCities();
 }

@@ -140,6 +140,7 @@ public class WeathersFragment extends BaseFragment  {
 
     }
 
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(WeatherEvent weatherEvent) {
         if (weatherEvent.getFrom().equals(WeatherEvent.BEIJING)) {

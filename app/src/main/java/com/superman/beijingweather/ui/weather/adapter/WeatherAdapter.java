@@ -29,6 +29,7 @@ import java.util.List;
 import rx.android.schedulers.AndroidSchedulers;
 
 
+
 /**
  * Created by wenlin on 2017/2/21.
  */
@@ -75,6 +76,8 @@ public class WeatherAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity, B
                     return;
                 }
                 LinearLayout forecastLayout = baseViewHolder.getView(R.id.forecast_layout);
+                TextView countyText = (TextView)baseViewHolder.getView(R.id.proudcast_county_tv);
+                countyText.setText("预报 " + weather.basic.cityName);
 
                 if (showWeatherChart) {
                     forecastLayout.setPadding(0, SizeUtils.dp2px(mContext, 16), 0, SizeUtils.dp2px(mContext, 16));
@@ -84,11 +87,11 @@ public class WeatherAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity, B
                     forecastLayout.removeAllViews();
                     for (DetailForecast forecast : weather.forecastList) {
                         View view = LayoutInflater.from(context).inflate(R.layout.forecast_item, forecastLayout, false);
+
                         TextView dateText = (TextView) view.findViewById(R.id.date_text);
                         TextView maxText = (TextView) view.findViewById(R.id.max_text);
                         TextView minText = (TextView) view.findViewById(R.id.min_text);
                         final ImageView info_iv = (ImageView) view.findViewById(R.id.info_iv);
-
 
                         maxText.setText(String.format("%s℃", forecast.getTmp().getMax()));
                         minText.setText(String.format("%s℃", forecast.getTmp().getMin()));

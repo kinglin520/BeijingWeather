@@ -8,4 +8,8 @@ public interface WeatherPresenter {
     public void getWeatherInfo(String cityid);
 
     public void getBingPic();
+
+    public void getBeijingCounties();
+
+    public void getShanghaiCounties();
 }

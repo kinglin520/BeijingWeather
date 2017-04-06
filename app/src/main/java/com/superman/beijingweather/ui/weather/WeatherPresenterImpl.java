@@ -1,6 +1,7 @@
 package com.superman.beijingweather.ui.weather;
 
 import com.superman.beijingweather.httpserver.api.WeatherController;
+import com.superman.beijingweather.model.weather.County;
 import com.superman.beijingweather.model.weather.Weather;
 import com.superman.beijingweather.ui.BaseSubscriber;
 import com.superman.beijingweather.utils.HttpUtil;
@@ -37,6 +38,19 @@ public class WeatherPresenterImpl implements WeatherPresenter {
 //        WeatherController.getBingPic().subscribe(new BingPicSubscriber());
         loadBingPic();
     }
+
+    @Override
+    public void getBeijingCounties() {
+        WeatherController.getBeijingCities().subscribe(new CountiesSubscriber());
+    }
+
+    @Override
+    public void getShanghaiCounties() {
+        WeatherController.getShanghaiCities().subscribe(new CountiesSubscriber());
+    }
+
+
+
     /**
      * 加载必应每日一图
      */
@@ -95,6 +109,24 @@ public class WeatherPresenterImpl implements WeatherPresenter {
         public void onNext(Object o) {
             super.onNext(o);
             weatherView.bingPic((String) o);
+        }
+    }
+
+    private class CountiesSubscriber extends BaseSubscriber<List<County>>{
+        @Override
+        public void onCompleted() {
+            super.onCompleted();
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            super.onError(e);
+        }
+
+        @Override
+        public void onNext(List<County> o) {
+            super.onNext(o);
+            weatherView.setCounties(o);
         }
     }
 }

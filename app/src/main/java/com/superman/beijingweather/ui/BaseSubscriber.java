@@ -15,7 +15,7 @@ import rx.Subscriber;
  * Created by wenlin on 2017/2/16.
  */
 
-public class BaseSubscriber extends Subscriber {
+public class BaseSubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onCompleted() {
@@ -72,18 +72,10 @@ public class BaseSubscriber extends Subscriber {
         }
     }
 
-    /**
-     * Provides the Observer with a new item to observe.
-     * <p>
-     * The {@link Observable} may call this method 0 or more times.
-     * <p>
-     * The {@code Observable} will not call this method again after it calls either {@link #onCompleted} or
-     * {@link #onError}.
-     *
-     * @param o the item emitted by the Observable
-     */
     @Override
-    public void onNext(Object o) {
+    public void onNext(T o) {
 
     }
+
+
 }

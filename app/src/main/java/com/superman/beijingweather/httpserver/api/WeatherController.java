@@ -2,6 +2,7 @@ package com.superman.beijingweather.httpserver.api;
 
 import com.superman.beijingweather.httpserver.ApiFactory;
 import com.superman.beijingweather.httpserver.BaseWeatherResponse;
+import com.superman.beijingweather.model.weather.County;
 import com.superman.beijingweather.model.weather.Weather;
 
 import java.util.List;
@@ -33,6 +34,12 @@ public class WeatherController {
         return handThread(weatherService.getBingPic());
     }
 
+    public static Observable<List<County>> getBeijingCities(){
+        return handThread(weatherService.getBeijingCities());
+    }
+    public static Observable<List<County>> getShanghaiCities(){
+        return handThread(weatherService.getShanghaiCities());
+    }
     private static <T> Observable<T> handThread(Observable<T> obs) {
         return obs.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io());

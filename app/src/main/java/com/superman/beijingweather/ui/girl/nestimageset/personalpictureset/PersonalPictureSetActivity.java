@@ -23,7 +23,6 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 public class PersonalPictureSetActivity extends BaseActivity implements PersonalPictureSetView {
@@ -32,7 +31,7 @@ public class PersonalPictureSetActivity extends BaseActivity implements Personal
     public static final String EXTRA_IMAGE_TITLE = "image_title";
     @BindView(R.id.rv_gank)
     RecyclerView recyclerView;
-    @BindView(R.id.swipe_container)
+
     SwipeRefreshLayout refreshLayout;
 
     private GirlsAdapter adapter;
@@ -71,6 +70,7 @@ public class PersonalPictureSetActivity extends BaseActivity implements Personal
 
         setDisplayHomeAsUpEnabled(true);
         baseUrl = getIntent().getStringExtra(EXTRA_IMAGE_URL);
+        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -144,10 +144,5 @@ public class PersonalPictureSetActivity extends BaseActivity implements Personal
         super.onDestroy();
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 }
