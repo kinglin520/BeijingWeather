@@ -2,29 +2,25 @@ package com.superman.beijingweather.model.weather;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.greenrobot.greendao.annotation.Id;
+import org.litepal.annotation.Column;
 import org.litepal.crud.DataSupport;
+
+import java.io.Serializable;
 
 /**
  * Created by wenlin on 2017/4/6.
  */
+public class County extends DataSupport implements Serializable {
 
-public class County extends DataSupport {
-
-    private int id;
     @SerializedName("name")
     private String countyName;
+    @Column(unique = true, defaultValue = "unknown")
     @SerializedName("weather_id")
+    @Id
     private String weatherId;
 
     private int cityId;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getCountyName() {
         return countyName;
@@ -49,6 +45,5 @@ public class County extends DataSupport {
     public void setCityId(int cityId) {
         this.cityId = cityId;
     }
-
 }
 

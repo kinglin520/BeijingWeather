@@ -123,7 +123,7 @@ public class WeatherFragment extends BaseContentFragment implements WeatherView 
     }
 
     private void initCounties() {
-        countyList = DataSupport.findAll(County.class);
+        countyList = DataSupport.where("weatherId like ?",cityId.substring(0,7)+"%").find(County.class);
         if (countyList != null && countyList.size() > 0) {
 
         } else {
@@ -167,16 +167,16 @@ public class WeatherFragment extends BaseContentFragment implements WeatherView 
      */
     private void refreshLocationInfo(Location location){
         LogUtils.i(TAG, new Gson().toJson(location));
-        StringBuilder street = new StringBuilder(getStreet(location.getLatitude(), location.getLongitude()));
+        String street = getStreet(location.getLatitude(), location.getLongitude());
         if(street.toString().indexOf("北京") != -1) {
-            street.replace(0, 2, "");
+            street = street.replace("北京", "");
         }else if(street.toString().indexOf("上海") != -1){
-            street.replace(0,2,"");
+            street = street.replace("上海","");
         }else {
             return;
         }
         for(County county : countyList){
-            if(street.toString().contains(county.getCountyName())){
+            if(street.contains(county.getCountyName())){
                 cityId = county.getWeatherId();
                 getWeather();
                 return;
@@ -239,7 +239,7 @@ public class WeatherFragment extends BaseContentFragment implements WeatherView 
      */
     public static String getStreet(double latitude, double longitude) {
         Address address = getAddress(latitude, longitude);
-        return address == null ? "unknown" : address.getAddressLine(1);
+        return address == null ? "unknown" : address.getAddressLine(0);
     }
 
     @Override

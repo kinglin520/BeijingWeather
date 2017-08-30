@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.blankj.utilcode.util.Utils;
+import com.facebook.stetho.Stetho;
 
 import org.litepal.LitePal;
 
@@ -19,12 +20,12 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         mContext = getApplicationContext();
-//        LitePal.initialize(this);
 //        if (!BuildConfig.DEBUG) {
 //            AppExceptionHandler.getInstance().setCrashHanler(this);
 //        }
         Utils.init(mContext);
         LitePal.initialize(this);
+        Stetho.initializeWithDefaults(this);
     }
 
     public static Context getContext() {

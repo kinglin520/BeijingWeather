@@ -2,11 +2,13 @@ package com.superman.beijingweather.model.weather;
 
 import org.litepal.crud.DataSupport;
 
+import java.io.Serializable;
+
 /**
  * Created by wenlin on 2017/4/6.
  */
 
-public class City extends DataSupport {
+public class City extends DataSupport implements Serializable {
 
     private int id;
 

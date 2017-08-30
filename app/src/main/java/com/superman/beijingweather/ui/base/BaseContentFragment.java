@@ -8,7 +8,7 @@ import com.superman.beijingweather.utils.ThemeUtil;
 
 
 /**
- * Created by liyu on 2016/10/31.
+ * Created by wenlin on 2017/8/30.
  */
 
 public abstract class BaseContentFragment extends BaseFragment {
