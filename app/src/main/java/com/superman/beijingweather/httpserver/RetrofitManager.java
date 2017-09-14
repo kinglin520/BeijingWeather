@@ -42,7 +42,9 @@ public class RetrofitManager {
     public static RetrofitManager getInstance() {
         if (instance == null) {
             synchronized (RetrofitManager.class) {
-                instance = new RetrofitManager();
+                if(instance == null){
+                    instance = new RetrofitManager();
+                }
             }
         }
         return instance;
