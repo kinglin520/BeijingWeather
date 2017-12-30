@@ -66,6 +66,7 @@ public class NewsFragments extends BaseFragment {
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
+
     }
 
     private void setupViewPager(ViewPagerAdapter adapter) {

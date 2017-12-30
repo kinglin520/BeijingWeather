@@ -30,5 +30,7 @@
                 android:title="关于" />
         </menu>
     </item>
+    <item android:title="微信：wenlin520"/>
+    <item android:title="晚上吃鸡，大吉大利"/>
 
 </menu>

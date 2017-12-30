@@ -18,6 +18,7 @@ import com.superman.beijingweather.R;
 import com.superman.beijingweather.ui.base.BaseActivity;
 import com.superman.beijingweather.ui.weather.SimpleSubscriber;
 import com.superman.beijingweather.utils.FileUtil;
+import com.superman.beijingweather.utils.PackageUtils;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -38,7 +39,8 @@ public class AboutActivity extends BaseActivity {
             "http://7xp1a1.com1.z0.glb.clouddn.com/liyu02.png",
             "http://7xp1a1.com1.z0.glb.clouddn.com/liyu03.png",
             "http://7xp1a1.com1.z0.glb.clouddn.com/liyu04.png",
-            "http://7xp1a1.com1.z0.glb.clouddn.com/liyu05.png"};
+            "http://7xp1a1.com1.z0.glb.clouddn.com/liyu05.png",
+            "https://avatars2.githubusercontent.com/u/13759787?s=400&u=309598350141229ebfde6c7d229437e8f2f26181&v=4"};
 
     private Subscription subscription;
 
@@ -70,10 +72,13 @@ public class AboutActivity extends BaseActivity {
                 R.anim.zoom_in));
         imageSwitcher.setOutAnimation(AnimationUtils.loadAnimation(this,
                 R.anim.zoom_out));
+
+        tvVersion.setText(PackageUtils.getVersionName(this)+"("+PackageUtils.getVersionCode(this)+")");
+
     }
 
     private void loadImage() {
-        Glide.with(this).load(imageUrls[new Random().nextInt(5)]).into(new SimpleTarget<GlideDrawable>(imageSwitcher.getWidth(), imageSwitcher.getHeight()) {
+        Glide.with(this).load(imageUrls[new Random().nextInt(6)]).into(new SimpleTarget<GlideDrawable>(imageSwitcher.getWidth(), imageSwitcher.getHeight()) {
             @Override
             public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
                 imageSwitcher.setImageDrawable(resource);

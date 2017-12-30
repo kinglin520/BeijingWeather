@@ -94,17 +94,17 @@ public class GirlsFragment extends BaseFragment {
         adapter.addFrag(hotFragment, "Hot");
 
         data = new Bundle();
-        data.putString(GIRLSERVERURL, "http://www.mzitu.com/xinggan");
+        data.putString(GIRLSERVERURL, "http://www.mzitu.com/xinggan/");
         Fragment sexFragment = OneLevelFragment.getInstance(data);
         adapter.addFrag(sexFragment, "性感");
 
         data = new Bundle();
-        data.putString(GIRLSERVERURL, "http://www.mzitu.com/japan");
+        data.putString(GIRLSERVERURL, "http://www.mzitu.com/japan/");
         Fragment japanFragment = OneLevelFragment.getInstance(data);
         adapter.addFrag(japanFragment, "日本");
 
         data = new Bundle();
-        data.putString(GIRLSERVERURL, "http://www.mzitu.com/mm");
+        data.putString(GIRLSERVERURL, "http://www.mzitu.com/mm/");
         Fragment mmFragment = OneLevelFragment.getInstance(data);
         adapter.addFrag(mmFragment, "清纯");
 

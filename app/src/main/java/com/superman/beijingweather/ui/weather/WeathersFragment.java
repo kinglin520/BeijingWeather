@@ -3,6 +3,7 @@ package com.superman.beijingweather.ui.weather;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -55,6 +56,8 @@ public class WeathersFragment extends BaseFragment  {
     AppBarLayout appBar;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
+    @BindView(R.id.tabs)
+    TabLayout tabLayout;
 
     private List<String> cityids = new ArrayList<>();
 
@@ -105,8 +108,8 @@ public class WeathersFragment extends BaseFragment  {
 
         cityids.add("CN101010100");
         cityids.add("CN101020100");
-        adapter.addFragment(one);
-        adapter.addFragment(two);
+        adapter.addFragment(one,"北京");
+        adapter.addFragment(two,"上海");
 
         viewPager.setAdapter(adapter);
 
@@ -133,6 +136,9 @@ public class WeathersFragment extends BaseFragment  {
 
             }
         });
+
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
     }
 
     @Override
@@ -179,13 +185,14 @@ public class WeathersFragment extends BaseFragment  {
 
     class ViewPagerAdapter extends FragmentStatePagerAdapter {
         private List<Fragment> fragmentList = new ArrayList<>();
-
+        private final List<String> mFragmentTitleList = new ArrayList<>();
         public ViewPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
-        public void addFragment(Fragment fragment) {
+        public void addFragment(Fragment fragment , String title) {
             fragmentList.add(fragment);
+            mFragmentTitleList.add(title);
         }
 
         @Override
@@ -196,6 +203,10 @@ public class WeathersFragment extends BaseFragment  {
         @Override
         public int getCount() {
             return fragmentList.size();
+        }
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
         }
     }
 }
