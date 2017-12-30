@@ -82,7 +82,10 @@ public class OneLevelFragment extends BaseContentFragment implements OneLevelVie
 
         String url = baseUrl + "/page/" + currentPage;
 
-        presenter.getGirls(url);
+        final String fakeRefer = baseUrl + "/"; //伪造 refer 破解防盗链
+        final String realUrl = "http://api.caoliyu.cn/meizitu.php?url=%s&refer=%s";// 然后用自己的服务器进行转发
+
+        presenter.getGirls(url,fakeRefer,realUrl);
     }
 
     @Override

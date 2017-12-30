@@ -31,19 +31,21 @@ public class OneLevelPresenterImpl implements OneLevelPresenter {
     public OneLevelPresenterImpl(OneLevelView view) {
         this.view = view;
     }
-
     @Override
-    public void getGirls(String url) {
+    public void getGirls(String url,final  String fakeRefer ,final String realUrl) {
         subscription = Observable.just(url).subscribeOn(Schedulers.io()).map(new Func1<String, List<Girl>>() {
             @Override
             public List<Girl> call(String url) {
                 List<Girl> girls = new ArrayList<>();
                 try {
-                    Document doc = (Document) Jsoup.connect(url).timeout(10000).get();
+                    Document doc =  Jsoup.connect(url).timeout(10000).get();
                     Element total = doc.select("div.postlist").first();
                     Elements items = total.select("li");
                     for (Element element : items) {
-                        Girl girl = new Girl(element.select("img").first().attr("data-original"));
+//                        Girl girl = new Girl(element.select("img").first().attr("data-original"));
+                        Girl girl = new Girl(String.format(realUrl,
+                                element.select("img").first().attr("data-original"),
+                                fakeRefer));
                         girl.setLink(element.select("a[href]").attr("href"));
                         girls.add(girl);
                     }

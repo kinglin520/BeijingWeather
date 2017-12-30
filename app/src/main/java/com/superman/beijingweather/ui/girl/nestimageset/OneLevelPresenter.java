@@ -5,7 +5,7 @@ package com.superman.beijingweather.ui.girl.nestimageset;
  */
 
 public interface OneLevelPresenter {
-    void getGirls(String page);
+    void getGirls(String page,String fakeRefer ,String realUrl);
 
     void releaseSubscriber();
 }
